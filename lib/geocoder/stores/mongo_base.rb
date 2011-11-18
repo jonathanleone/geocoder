@@ -4,15 +4,15 @@ module Geocoder::Store
     def self.included_by_model(base)
       base.class_eval do
 
-        scope :geocoded, lambda {
+        named_scope :geocoded, lambda {
           where(geocoder_options[:coordinates].ne => nil)
         }
 
-        scope :not_geocoded, lambda {
+        named_scope :not_geocoded, lambda {
           where(geocoder_options[:coordinates] => nil)
         }
 
-        scope :near, lambda{ |location, *args|
+        named_scope :near, lambda{ |location, *args|
           coords  = Geocoder::Calculations.extract_coordinates(location)
 
           # no results if no lat/lon given

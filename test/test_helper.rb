@@ -26,7 +26,7 @@ module ActiveRecord
       write_attribute(attr_name.to_sym, value)
     end
 
-    def self.scope(*args); end
+    def self.named_scope(*args); end
 
     def method_missing(name, *args, &block)
       if name.to_s[-1..-1] == "="
